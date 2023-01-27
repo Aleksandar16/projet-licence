@@ -1,6 +1,12 @@
 monolog:
     handlers:
         main:
+            type: stream
+            path: '%kernel.logs_dir%/%kernel.environment%.log'
+            level: error
+        file_log:
             type: rotating_file
-            path: '/var/log/prod.log'
-            level: debug
+            path: '%kernel.project_dir%/var/log/prod.log'
+            level: error
+            max_files: 14
+            rotation_strategy: 'daily'
